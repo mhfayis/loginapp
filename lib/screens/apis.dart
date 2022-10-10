@@ -26,3 +26,5 @@ Future<String> getforgotresult({required String number}) async {
   print(_responce.body);
   return _responce.body;
 }
+
+_newAPi() {}
