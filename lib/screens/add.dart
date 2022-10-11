@@ -17,8 +17,6 @@ class _AddState extends State<Add> {
     super.initState();
   }
 
-  apiname() async {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

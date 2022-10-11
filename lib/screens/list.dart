@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login/screens/games.dart';
 
 class ListData extends StatefulWidget {
   const ListData({Key? key}) : super(key: key);
@@ -28,6 +29,14 @@ class _ListDataState extends State<ListData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: BottomAppBar(
+          child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Game()));
+              },
+              icon: Icon(Icons.games)),
+        ),
         appBar: AppBar(
           title: Text('students detalis'),
           centerTitle: true,

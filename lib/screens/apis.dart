@@ -21,10 +21,8 @@ Future<List<Usermodel>> getfacebookresult({required String number}) async {
   return Usermodel.listFromJson(jsonDecode(_responces.body));
 }
 
-Future<String> getforgotresult({required String number}) async {
+Future<List<Products>> getforgotresult() async {
   final _responce = await http.get(Uri.parse("https://dummyjson.com/products"));
-  print(_responce.body);
-  return _responce.body;
+  print(jsonDecode(_responce.body)['products']);
+  return Products.listFromJson(jsonDecode(_responce.body)['products']);
 }
-
-_newAPi() {}

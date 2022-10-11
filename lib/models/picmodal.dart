@@ -87,9 +87,14 @@ class Products {
     }
     return data;
   }
+
+  static List<Products> listFromJson(List<dynamic> list) {
+    List<Products> rows = list.map((i) => Products.fromJson(i)).toList();
+    return rows;
+  }
 }
 
-class product {
+class ProductList {
 /*
 {
   "products": [
@@ -120,13 +125,13 @@ class product {
   int? skip;
   int? limit;
 
-  product({
+  ProductList({
     this.products,
     this.total,
     this.skip,
     this.limit,
   });
-  product.fromJson(Map<String, dynamic> json) {
+  ProductList.fromJson(Map<String, dynamic> json) {
     if (json['products'] != null) {
       final v = json['products'];
       final arr0 = <Products>[];
