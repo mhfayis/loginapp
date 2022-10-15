@@ -5,9 +5,16 @@ import 'package:login/screens/add.dart';
 import 'package:login/screens/facebook.dart';
 import 'package:login/screens/list.dart';
 import 'package:http/http.dart' as http;
+import 'package:login/screens/splash.dart';
 import 'package:login/screens/todos.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(login());
+
+// late SharedPreferences sharedPreferences;
+
+void main()  async {
+  
+  runApp(const login(),);}
 
 class login extends StatelessWidget {
   const login({Key? key}) : super(key: key);
@@ -15,7 +22,7 @@ class login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: loginpage(),
+      home: splashscreen(),
     );
   }
 }
@@ -90,7 +97,8 @@ class loginpage extends StatelessWidget {
             ],
           ),
           ElevatedButton(
-              onPressed: () async {
+              onPressed: () async {final SharedPreferences sharedPreferences = await SharedPreferences.getInstance(); 
+
                 if (_username.text.isEmpty || _password.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text("password or username is emty"),
@@ -109,8 +117,7 @@ class loginpage extends StatelessWidget {
                     content: Text("password or username is wrong"),
                   ));
                 }
-                ;
-                ;
+                
               },
               child: Text('log in'),
               style: ElevatedButton.styleFrom(fixedSize: Size(300, 30))),
@@ -154,4 +161,16 @@ class loginpage extends StatelessWidget {
       ),
     );
   }
+//   Future saveData()async{
+//     print(_username);
+//     print(_password);
+// //sharedpreferances
+// final SharedPref=await SharedPreferences.getInstance();
+// //save data
+
+// await SharedPref.setString('saved_valu', _username.text);
+// await SharedPref.setString('saved_valu', _password.text);
+
+//     } 
+    
 }
