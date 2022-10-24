@@ -32,16 +32,18 @@ class _ListDataState extends State<ListData> {
     return Scaffold(
         bottomNavigationBar: BottomAppBar(
           child: Row(
-            children: [IconButton(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
                   onPressed: () {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => Game()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Game()));
                   },
                   icon: Icon(Icons.apple)),
               IconButton(
                   onPressed: () {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => table()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Tablescreen()));
                   },
                   icon: Icon(Icons.games)),
             ],
@@ -100,7 +102,8 @@ class _ListDataState extends State<ListData> {
                         ),
                       ],
                     ),
-                  ))
+                  )
+                  )
               .toList(),
         ));
   }

@@ -1,27 +1,62 @@
+import 'dart:io';
+
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:login/screens/add.dart';
 import 'package:login/screens/facebook.dart';
 import 'package:login/screens/list.dart';
 import 'package:http/http.dart' as http;
+import 'package:login/screens/mainmenu.dart';
+import 'package:login/screens/route.dart';
+import 'package:login/screens/routedata.dart';
 import 'package:login/screens/splash.dart';
 import 'package:login/screens/todos.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 // late SharedPreferences sharedPreferences;
+  late List<CameraDescription> cameras;
 
-void main()  async {
-  
-  runApp(const login(),);}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+    cameras = await availableCameras();
 
-class login extends StatelessWidget {
-  const login({Key? key}) : super(key: key);
+  runApp(
+    login(),
+  );
+}
+
+class login extends StatefulWidget {
+  login({Key? key}) : super(key: key);
+
+  @override
+  State<login> createState() => _loginState();
+}
+
+class _loginState extends State<login> {
+  File? _image;
+
+  Future getImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image == null) return;
+
+    final iamgeTemporary = File(image.path);
+    setState(() {
+      this._image = iamgeTemporary;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/abc': (context) => RouteDataOne(),
+        '/d': (context) => RouteData(
+              arguments: Arguments(text: 'ddfdfdf'),
+            )
+      },
       home: splashscreen(),
     );
   }
@@ -97,7 +132,9 @@ class loginpage extends StatelessWidget {
             ],
           ),
           ElevatedButton(
-              onPressed: () async {final SharedPreferences sharedPreferences = await SharedPreferences.getInstance(); 
+              onPressed: () async {
+                final SharedPreferences sharedPreferences =
+                    await SharedPreferences.getInstance();
 
                 if (_username.text.isEmpty || _password.text.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -111,13 +148,12 @@ class loginpage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ListData()));
+                          builder: (context) => const MainMenu()));
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text("password or username is wrong"),
                   ));
                 }
-                
               },
               child: Text('log in'),
               style: ElevatedButton.styleFrom(fixedSize: Size(300, 30))),
@@ -171,6 +207,6 @@ class loginpage extends StatelessWidget {
 // await SharedPref.setString('saved_valu', _username.text);
 // await SharedPref.setString('saved_valu', _password.text);
 
-//     } 
-    
+//     }
+
 }
