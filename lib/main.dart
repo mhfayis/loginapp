@@ -51,12 +51,6 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {
-        '/abc': (context) => RouteDataOne(),
-        '/d': (context) => RouteData(
-              arguments: Arguments(text: 'ddfdfdf'),
-            )
-      },
       home: splashscreen(),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:login/screens/route.dart';
 
 class RouteDataOne extends StatefulWidget {
@@ -37,8 +36,11 @@ class _RouteDataOneState extends State<RouteDataOne> {
           ),
           ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamed('/d',
-                    arguments: Arguments(text: _controller.text));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RouteDataPage(
+                            arguments: Arguments(text: _controller.text))));
               },
               child: Text("Go to second page"))
         ],

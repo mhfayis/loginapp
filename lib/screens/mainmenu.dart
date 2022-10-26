@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:login/screens/cameraOnApage.dart';
+import 'package:login/screens/routdemofirst.dart';
 import 'package:path_provider_android/path_provider_android.dart';
 import 'package:camera_android/camera_android.dart';
 
@@ -75,6 +76,14 @@ class _MainMenuState extends State<MainMenu> {
                         MaterialPageRoute(builder: (context) => CameraApp()));
                   },
                   child: Text("cam page")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        (context),
+                        MaterialPageRoute(
+                            builder: (context) => FirstroutPage()));
+                  },
+                  child: Text("demo route")),
             ],
           ),
         ));

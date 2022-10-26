@@ -4,19 +4,18 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class Arguments {
   final String text;
-
   Arguments({required this.text});
 }
 
-class RouteData extends StatefulWidget {
-  const RouteData({super.key, required this.arguments});
+class RouteDataPage extends StatefulWidget {
+  const RouteDataPage({super.key, required this.arguments});
   final Arguments arguments;
 
   @override
-  State<RouteData> createState() => _RouteDataState();
+  State<RouteDataPage> createState() => _RouteDataPageState();
 }
 
-class _RouteDataState extends State<RouteData> {
+class _RouteDataPageState extends State<RouteDataPage> {
   @override
   void initState() {
     print(widget.arguments.text);
