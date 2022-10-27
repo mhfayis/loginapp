@@ -178,7 +178,7 @@ class loginpage extends StatelessWidget {
                 },
                 child: Text('google'),
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.red, fixedSize: Size(150, 30)),
+                    backgroundColor: Colors.red, fixedSize: Size(150, 30)),
               )
             ],
           ),
