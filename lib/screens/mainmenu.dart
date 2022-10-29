@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:login/screens/cameraOnApage.dart';
 import 'package:login/screens/choicechip.dart';
+import 'package:login/screens/musicplayer.dart';
 import 'package:login/screens/newTask.dart';
 import 'package:login/screens/routdemofirst.dart';
+import 'package:login/screens/todos.dart';
+import 'package:login/screens/videoPlayer.dart';
 import 'package:path_provider_android/path_provider_android.dart';
 import 'package:camera_android/camera_android.dart';
 
@@ -112,6 +115,16 @@ class _MainMenuState extends State<MainMenu> {
                           MaterialPageRoute(builder: (context) => TaskOne()));
                     },
                     child: Text("task")),
+              ),SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          (context),
+                          MaterialPageRoute(
+                              builder: (context) => Todos()));
+                    },
+                    child: Text("online spoing whith api")),
               ),
               SizedBox(
                 width: 200,
@@ -123,6 +136,27 @@ class _MainMenuState extends State<MainMenu> {
                               builder: (context) => ChoiceChipPage()));
                     },
                     child: Text("choicechip")),
+              ),
+              SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          (context),
+                          MaterialPageRoute(
+                              builder: (context) => MusicPlayerPage()));
+                    },
+                    child: Text("music player")),
+              ),SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          (context),
+                          MaterialPageRoute(
+                              builder: (context) => VideoPlayerPage()));
+                    },
+                    child: Text("music player")),
               ),
             ],
           ),

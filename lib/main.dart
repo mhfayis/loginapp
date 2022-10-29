@@ -1,27 +1,24 @@
-import 'dart:io';
-
 import 'package:camera/camera.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:login/screens/add.dart';
+
 import 'package:login/screens/facebook.dart';
-import 'package:login/screens/list.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:login/screens/mainmenu.dart';
-import 'package:login/screens/route.dart';
-import 'package:login/screens/routedata.dart';
+
 import 'package:login/screens/splash.dart';
 import 'package:login/screens/todos.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // late SharedPreferences sharedPreferences;
-  late List<CameraDescription> cameras;
+late List<CameraDescription> cameras;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    cameras = await availableCameras();
+  cameras = await availableCameras();
 
   runApp(
     login(),
@@ -36,18 +33,6 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
-  File? _image;
-
-  Future getImage() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.camera);
-    if (image == null) return;
-
-    final iamgeTemporary = File(image.path);
-    setState(() {
-      this._image = iamgeTemporary;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -58,8 +43,9 @@ class _loginState extends State<login> {
 
 class loginpage extends StatelessWidget {
   loginpage({Key? key}) : super(key: key);
-  final TextEditingController _username = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+  final TextEditingController _username = TextEditingController(text: 'sdfsdf');
+  final TextEditingController _password =
+      TextEditingController(text: 'dfdfsdf');
 
   apifunction(String username, String pass) async {
     var url = Uri.https('jsonplaceholder.typicode.com', 'posts');
