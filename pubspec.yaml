@@ -44,6 +44,7 @@ dependencies:
   just_audio: ^0.9.30
   audioplayers: ^1.1.1
   file_picker: ^5.2.2
+  provider: ^6.0.4
 
 dev_dependencies:
   flutter_launcher_icons: "^0.10.0"

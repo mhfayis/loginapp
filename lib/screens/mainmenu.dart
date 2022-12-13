@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:login/screens/cameraOnApage.dart';
 import 'package:login/screens/choicechip.dart';
+import 'package:login/screens/dropdown.dart';
 import 'package:login/screens/musicplayer.dart';
 import 'package:login/screens/newTask.dart';
 import 'package:login/screens/routdemofirst.dart';
@@ -115,14 +116,13 @@ class _MainMenuState extends State<MainMenu> {
                           MaterialPageRoute(builder: (context) => TaskOne()));
                     },
                     child: Text("task")),
-              ),SizedBox(
+              ),
+              SizedBox(
                 width: 200,
                 child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          (context),
-                          MaterialPageRoute(
-                              builder: (context) => Todos()));
+                      Navigator.push((context),
+                          MaterialPageRoute(builder: (context) => Todos()));
                     },
                     child: Text("online spoing whith api")),
               ),
@@ -147,7 +147,8 @@ class _MainMenuState extends State<MainMenu> {
                               builder: (context) => MusicPlayerPage()));
                     },
                     child: Text("music player")),
-              ),SizedBox(
+              ),
+              SizedBox(
                 width: 200,
                 child: ElevatedButton(
                     onPressed: () {
@@ -157,6 +158,15 @@ class _MainMenuState extends State<MainMenu> {
                               builder: (context) => VideoPlayerPage()));
                     },
                     child: Text("music player")),
+              ),
+              SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push((context),
+                          MaterialPageRoute(builder: (context) => dropdown()));
+                    },
+                    child: Text("drop down")),
               ),
             ],
           ),
