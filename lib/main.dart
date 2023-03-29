@@ -10,14 +10,16 @@ import 'package:http/http.dart' as http;
 import 'package:login/screens/mainmenu.dart';
 
 import 'package:login/screens/splash.dart';
-import 'package:login/screens/todos.dart';
+import 'package:login/auth/signuppage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 // late SharedPreferences sharedPreferences;
 late List<CameraDescription> cameras;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   cameras = await availableCameras();
 
   runApp(
@@ -43,9 +45,8 @@ class _loginState extends State<login> {
 
 class loginpage extends StatelessWidget {
   loginpage({Key? key}) : super(key: key);
-  final TextEditingController _username = TextEditingController(text: 'sdfsdf');
-  final TextEditingController _password =
-      TextEditingController(text: 'dfdfsdf');
+  final TextEditingController _username = TextEditingController(text: '');
+  final TextEditingController _password = TextEditingController(text: '');
 
   apifunction(String username, String pass) async {
     var url = Uri.https('jsonplaceholder.typicode.com', 'posts');
@@ -79,7 +80,7 @@ class loginpage extends StatelessWidget {
               controller: _username,
               decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                  prefixIcon: Icon(Icons.people),
+                  prefixIcon: Icon(Icons.mail),
                   border: OutlineInputBorder(),
                   hintText: 'example@gmail.com'),
             ),
@@ -90,26 +91,37 @@ class loginpage extends StatelessWidget {
               controller: _password,
               decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                  prefixIcon: Icon(Icons.lock_person),
+                  prefixIcon: Icon(Icons.lock_sharp),
                   border: OutlineInputBorder(),
                   hintText: 'password'),
               autofocus: false,
               obscureText: true,
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Todos()));
-                  },
-                  child: Text(
-                    'forgot password?',
-                    style: TextStyle(color: Colors.black),
-                  )),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Signuppage()));
+                    },
+                    child: Text(
+                      'create new account',
+                      style: TextStyle(color: Colors.black),
+                    )),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'forgot password?',
+                      style: TextStyle(color: Colors.black),
+                    )),
+              ],
+            ),
           ),
           ElevatedButton(
               onPressed: () async {
@@ -150,18 +162,12 @@ class loginpage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Facebook()));
-                    },
-                    child: Text('facebook'),
+                    onPressed: () {},
+                    child: Text('phone'),
                     style: ElevatedButton.styleFrom(fixedSize: Size(150, 30))),
               ),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Add()));
-                },
+                onPressed: () {},
                 child: Text('google'),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red, fixedSize: Size(150, 30)),
@@ -177,16 +183,4 @@ class loginpage extends StatelessWidget {
       ),
     );
   }
-//   Future saveData()async{
-//     print(_username);
-//     print(_password);
-// //sharedpreferances
-// final SharedPref=await SharedPreferences.getInstance();
-// //save data
-
-// await SharedPref.setString('saved_valu', _username.text);
-// await SharedPref.setString('saved_valu', _password.text);
-
-//     }
-
 }

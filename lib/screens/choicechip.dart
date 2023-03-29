@@ -18,7 +18,7 @@ class ChipName {
 
 class _ChoiceChipPageState extends State<ChoiceChipPage>
     with TickerProviderStateMixin {
-  int _selected = 2220220020020020022;
+  int _selected = 0;
   // late int _selectedIndex;
   List<ChipName> _options = [
     ChipName('zero', Icons.onetwothree),
